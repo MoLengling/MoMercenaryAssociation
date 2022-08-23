@@ -51,8 +51,8 @@ namespace MoMercenaryAssociation
                 {
                     OptionText = info.OptionText;
                 }
-                else
-                {//Get {Amount} {TroopName} as your {RecruitType} cost {GoldValue} {Gold} {ProsperityValue} {Prosperity}
+                
+                //Get {Amount} {TroopName} as your {RecruitType} cost {GoldValue} {Gold} {ProsperityValue} {Prosperity}
                  //{HearthValue} {Hearth} {MilitiaValue} {Militia} {RenownValue} {Renown}
                     string[][] OptionString = new string[][]{
                         new string[]{ "Amount", info.Amount.ToString()} ,
@@ -68,10 +68,10 @@ namespace MoMercenaryAssociation
                         new string[]{ "Militia", info.ListOfCost.ContainsKey(RecruitCostType.Militia) ? MoStrings.Militia : "" } ,
                         new string[]{ "RenownValue", info.ListOfCost.ContainsKey(RecruitCostType.Renown) ? info.ListOfCost[RecruitCostType.Renown].ToString() : "" } ,
                         new string[]{ "Renown", info.ListOfCost.ContainsKey(RecruitCostType.Renown) ? MoStrings.Renown : "" } 
-                   };
+                    };
 
                     OptionText = MoTexts.ToString(MoStrings.DefaultRecruitOptionText, OptionString);
-                }
+                
                 MoGameMenuHelper.Get().CreateGameMenuOption(MenuId, OptionText,
                     info.OnOptionInitDelegate
                     ,
