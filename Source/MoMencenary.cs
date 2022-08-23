@@ -153,8 +153,8 @@ namespace MoMercenaryAssociation
                         for (int i = 0; i < Amount; i++)
                         {
                             CharacterObject TempCharacter = CharacterObject.CreateFrom(character);
-                            Hero newHero = HeroCreator.CreateHeroAtOccupation(Occupation.Wanderer);
-                            newHero.SetCharacterObject(TempCharacter);
+                            MoReflection.SetFieldValue("_occupation", Occupation.Wanderer, TempCharacter);
+                            Hero newHero = HeroCreator.CreateSpecialHero(TempCharacter);
                             AddCompanionAction.Apply(Clan.PlayerClan, newHero);
                             AddHeroToPartyAction.Apply(newHero, MobileParty.MainParty);
                         }
@@ -164,8 +164,9 @@ namespace MoMercenaryAssociation
                     {
                         for (int i = 0; i < Amount; i++)
                         {
-                            Hero newHero = HeroCreator.CreateSpecialHero(character);
-                            newHero.Clan = Clan.PlayerClan;
+                            CharacterObject TempCharacter = CharacterObject.CreateFrom(character);
+                            MoReflection.SetFieldValue("_occupation", Occupation.Lord, TempCharacter);
+                            Hero newHero = HeroCreator.CreateSpecialHero(character,Settlement.CurrentSettlement,Clan.PlayerClan);
                             AddHeroToPartyAction.Apply(newHero, MobileParty.MainParty);
                         }
                         break;

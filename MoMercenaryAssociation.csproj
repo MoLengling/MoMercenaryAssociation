@@ -28,7 +28,6 @@
     <Compile Remove="Old\MoOldMercenary.cs" />
     <Compile Remove="Old\MoOldMMAException.cs" />
     <Compile Remove="Old\MoOldOfficeBase.cs" />
-    <Compile Remove="Old\MoReflection.cs" />
     <Compile Remove="Old\MoStore.cs" />
     <Compile Remove="Old\MoStrings.cs" />
     <Compile Remove="Old\MoTexts.cs" />
@@ -48,7 +47,6 @@
     <None Include="Old\MoOldMercenary.cs" />
     <None Include="Old\MoOldMMAException.cs" />
     <None Include="Old\MoOldOfficeBase.cs" />
-    <None Include="Old\MoReflection.cs" />
     <None Include="Old\MoStore.cs" />
     <None Include="Old\MoStrings.cs" />
     <None Include="Old\MoTexts.cs" />
