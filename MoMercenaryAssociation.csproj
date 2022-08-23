@@ -1,0 +1,90 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Main.cs" />
+    <Compile Remove="MMASetting.cs" />
+    <Compile Remove="MoAPI.cs" />
+    <Compile Remove="MoGameMenu.cs" />
+    <Compile Remove="MoItem.cs" />
+    <Compile Remove="MoManager.cs" />
+    <Compile Remove="MoOldMercenary.cs" />
+    <Compile Remove="MoOldMMAException.cs" />
+    <Compile Remove="MoOldOfficeBase.cs" />
+    <Compile Remove="MoReflection.cs" />
+    <Compile Remove="MoStore.cs" />
+    <Compile Remove="MoStrings.cs" />
+    <Compile Remove="MoTexts.cs" />
+    <Compile Remove="Old\Main.cs" />
+    <Compile Remove="Old\MMASetting.cs" />
+    <Compile Remove="Old\MoAPI.cs" />
+    <Compile Remove="Old\MoGameMenu.cs" />
+    <Compile Remove="Old\MoItem.cs" />
+    <Compile Remove="Old\MoManager.cs" />
+    <Compile Remove="Old\MoOldMercenary.cs" />
+    <Compile Remove="Old\MoOldMMAException.cs" />
+    <Compile Remove="Old\MoOldOfficeBase.cs" />
+    <Compile Remove="Old\MoReflection.cs" />
+    <Compile Remove="Old\MoStore.cs" />
+    <Compile Remove="Old\MoStrings.cs" />
+    <Compile Remove="Old\MoTexts.cs" />
+    <Compile Remove="Old\xmlTools.cs" />
+    <Compile Remove="Source\Test.cs" />
+    <Compile Remove="xmlTools.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="MoMercenaryAssociation.sln" />
+    <None Include="Old\Main.cs" />
+    <None Include="Old\MMASetting.cs" />
+    <None Include="Old\MoAPI.cs" />
+    <None Include="Old\MoGameMenu.cs" />
+    <None Include="Old\MoItem.cs" />
+    <None Include="Old\MoManager.cs" />
+    <None Include="Old\MoOldMercenary.cs" />
+    <None Include="Old\MoOldMMAException.cs" />
+    <None Include="Old\MoOldOfficeBase.cs" />
+    <None Include="Old\MoReflection.cs" />
+    <None Include="Old\MoStore.cs" />
+    <None Include="Old\MoStrings.cs" />
+    <None Include="Old\MoTexts.cs" />
+    <None Include="Old\xmlTools.cs" />
+    <None Include="Source\Test.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TaleWorlds.CampaignSystem">
+      <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Core">
+      <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Library">
+      <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.Localization">
+      <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.MountAndBlade">
+      <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
+    </Reference>
+    <Reference Include="TaleWorlds.ObjectSystem">
+      <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MoMercenaryAssociation\bin\Win64_Shipping_Client\" />
+    <Folder Include="MoMercenaryAssociation\Config\" />
+    <Folder Include="MoMercenaryAssociation\ModuleData\Output\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy.bat" />
+  </Target>
+
+</Project>

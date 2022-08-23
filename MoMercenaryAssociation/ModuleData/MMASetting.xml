@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MMASettings>
+	<GAIN_EXP_FROM_PRISONER>false</GAIN_EXP_FROM_PRISONER>
+	<EXP_GAIN_RATE>10</EXP_GAIN_RATE>
+	<CHEAT_MODE>false</CHEAT_MODE>
+	<AIMinMilitiaNumber>150</AIMinMilitiaNumber>
+</MMASettings>

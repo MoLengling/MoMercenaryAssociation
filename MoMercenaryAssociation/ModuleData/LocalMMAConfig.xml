@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- author:Mo Lengling-->
+
+<!-- Be sure to note the case of the initial letter of the Attribute name.务必注意大小写问题，大小写一旦错误，程序轻则忽略属性设置，重则崩溃-->
+<!-- You can find English Description at the End of file-->
+
+<Submenus>
+	<Submenu 
+		Id="Mo_Official_Offices" 
+		Text ="{=MoLocalConfig1}You are now in the official office of the Mercenary Association, what are you going to do?">
+		<Parentmenus>
+			<Parentmenu
+				Id="MMA_Town"
+				OptionText ="{=MoLocalConfig2}Go to the official office of the Mercenary Association.."
+				ReturnText ="{=MoStrings11}Go back to the Mercenary Association Hall."
+				Return ="true"
+				EnableConditiosn="true"	
+				/>
+			<Parentmenu
+				Id="MMA_Castle"
+				OptionText ="{=MoLocalConfig2}Go to the official office of the Mercenary Association.."
+				ReturnText ="{=MoStrings12}Go back to the Mercenary Association Hall."
+				Return ="true"
+				EnableConditiosn="true"	
+				/>
+			<Parentmenu
+				Id="MMA_Village"
+				OptionText ="{=MoLocalConfig2}Go to the official office of the Mercenary Association.."
+				ReturnText ="{=MoStrings13}Go back to the Mercenary Association Hall."
+				Return ="true"
+				EnableConditiosn="true"	
+				/>
+		</Parentmenus>
+		<Submenus>
+			<Submenu
+				Id="Mo_official_low"
+				OptionText ="{=MoLocalConfig3}Looking for some soldiers."
+				ReturnText ="{=MoLocalConfig4}Looking for the others."
+				Return ="true"
+				EnableConditiosn="true"/>
+			<Submenu
+				Id="Mo_official_prison"
+				OptionText ="{=MoLocalConfig5}Looking for some criminals."
+				ReturnText ="{=MoLocalConfig4}Looking for the others."
+				Return ="true"
+				EnableConditiosn="true"/>
+		</Submenus>
+	</Submenu>
+
+
+	<Office Id="Mo_official_low"
+			Text="{=MoLocalConfig6}You come to the official office of the Mo Mercenary Association, where some young men are looking for employers.\n The more experienced soldiers seem in the room inside. ">
+		<Submenus>
+			<Submenu
+				Id="Mo_official_mid"
+				OptionText ="{=MoLocalConfig7}Go to the deeper room."
+				ReturnText ="{=MoLocalConfig8}Go back to the previous room."
+				Return ="true"
+				EnableConditiosn="true"/>
+		</Submenus>
+		<Characters>
+			<Character Id="mercenary_1">
+				<MethodList RecruitType="Soldier">
+					<Recruit Amount ="1" Gold ="30" Militia="1"/>
+					<Recruit Amount ="5" Gold ="140" Militia="5"/>
+					<Recruit Amount ="10" Gold ="280" Militia="10"/>
+				</MethodList>
+			</Character>
+			<Character Id="mercenary_2">
+				<MethodList RecruitType="Soldier">
+					<Recruit Amount ="1" Gold ="60" Militia="1"/>
+					<Recruit Amount ="5" Gold ="280" Militia="5"/>
+					<Recruit Amount ="10" Gold ="500" Militia="10"/>
+				</MethodList>
+			</Character>
+			<Character Id="mercenary_3">
+				<MethodList RecruitType="Soldier">
+					<Recruit Amount ="1" Gold ="60" Militia="1"/>
+				</MethodList>
+			</Character>
+		</Characters>
+	</Office>
+	
+	
+	<Office Id="Mo_official_mid"
+			Text="{=MoLocalConfig9}You come to the official office of the Mo Mercenary Association. The soldiers here were the backbone of the army, experienced and brave.\n But you see the Elite Force waiting further inside.">
+		
+		<Submenus>
+			<Submenu
+				Id="Mo_official_high"
+				OptionText ="{=MoLocalConfig7}Go to the deeper room."
+				ReturnText ="{=MoLocalConfig8}Go back to the previous room."
+				Return ="true"
+				EnableConditiosn="true">
+			</Submenu>
+		</Submenus>
+		
+		<Characters>
+			<Character Id="mercenary_4">
+					<MethodList RecruitType="Soldier">
+						<Recruit Amount ="1" Gold ="300" Militia="1"/>
+						<Recruit Amount ="5" Gold ="1450" Militia="5"/>
+						<Recruit Amount ="10" Gold ="2860" Militia="10"/>
+					</MethodList>
+				</Character>
+				<Character Id="mercenary_5">
+					<MethodList RecruitType="Soldier">
+						<Recruit Amount ="1" Gold ="300" Militia="1"/>
+						<Recruit Amount ="5" Gold ="1450" Militia="5"/>
+						<Recruit Amount ="10" Gold ="2860" Militia="10"/>
+					</MethodList>
+				</Character>
+				<Character Id="mercenary_6">
+					<MethodList RecruitType="Soldier">
+						<Recruit Amount ="1" Gold ="300" Militia="1"/>
+						<Recruit Amount ="5" Gold ="1450" Militia="5"/>
+						<Recruit Amount ="10" Gold ="2860" Militia="10"/>
+					</MethodList>
+				</Character>
+		</Characters>
+		
+	</Office>
+	
+	<Office Id="Mo_official_high"
+			Text="{=MoLocalConfig10}You come to the official office of the Mo Mercenary Association. This place is full of the best soldiers.">
+		
+		<Characters>
+				<Character Id="mercenary_7">
+					<MethodList RecruitType="Soldier">
+						<Recruit Amount ="1" Gold ="700" Militia="1"/>
+						<Recruit Amount ="3" Gold ="2000" Militia="3"/>
+					</MethodList>
+				</Character>
+				<Character Id="mercenary_8">
+					<MethodList RecruitType="Soldier">
+						<Recruit Amount ="1" Gold ="700" Militia="1"/>
+						<Recruit Amount ="3" Gold ="2000" Militia="3"/>
+					</MethodList>
+				</Character>
+				<Character Id="mercenary_9">
+					<MethodList RecruitType="Soldier">
+						<Recruit Amount ="1" Gold ="700" Militia="1"/>
+						<Recruit Amount ="3" Gold ="2000" Militia="3"/>
+					</MethodList>
+				</Character>
+			</Characters>
+		
+	</Office>
+	
+	
+	
+	<Office Id="Mo_official_prison" Text="{=MoLocalConfig11}You came to the Association Prison. There are many prisoners here. You can buy them for a little money.">
+		<Characters>
+			<Character Id="looter">
+				<MethodList RecruitType="Prisoner">
+					<Recruit Amount ="1" Gold = "20"/>
+					<Recruit Amount ="5" Gold = "80"/>
+					<Recruit Amount ="10" Gold = "150"/>
+				</MethodList>
+			</Character>
+			<Character Id="deserter" >
+				<MethodList RecruitType="Prisoner">
+					<Recruit Amount ="1" Gold = "40"/>
+					<Recruit Amount ="5" Gold = "160"/>
+					<Recruit Amount ="10" Gold = "300"/>
+				</MethodList>
+			</Character>
+		</Characters>
+	</Office>
+	
+</Submenus>
+

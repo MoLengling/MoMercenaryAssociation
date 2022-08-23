@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Module>
+	<Name value = "Mo Mercenary Association"/>
+	<Id value = "MoMercenaryAssociation"/>
+	<Version value = "e1.8.0.1000"/>
+	<DefaultModule value="true"/>
+	<SingleplayerModule value="true"/>
+  	<Official value="false" />
+  	<DependedModules>
+		<DependedModule Id="Native" DependentVersion="e1.8.0"/>
+		<DependedModule Id="SandBoxCore" DependentVersion="e1.8.0"/>
+		<DependedModule Id="Sandbox" DependentVersion="e1.8.0"/>
+		<DependedModule Id="CustomBattle" DependentVersion="e1.8.0"/>
+		<DependedModule Id="StoryMode" DependentVersion="e1.8.0"/>
+	</DependedModules>
+	<SubModules>
+		<SubModule>
+			<Name value = "MoMercenaryAssociation"/>
+			<DLLName value = "MoMercenaryAssociation.dll"/>
+			<SubModuleClassType value = "MoMercenaryAssociation.MoMercenaryAssociation"/>			
+			<Tags>
+				<Tag key="DedicatedServerType" value ="none" />
+			</Tags>
+		</SubModule>
+	</SubModules>
+	<Xmls/>
+</Module>

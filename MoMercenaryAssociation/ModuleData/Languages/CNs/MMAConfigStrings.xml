@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base type = "string">
+	<tags>
+		<tag language="简体中文"/>
+	</tags>
+	<strings>
+		<string id="MoLocalConfig1" text="你现在在墨家佣兵行会的官方办事处,你要做什么?"/>
+		<string id="MoLocalConfig2" text="去佣兵行会的官方办公室."/>
+		<string id="MoLocalConfig3" text="寻找战士."/>
+		<string id="MoLocalConfig4" text="看看别的."/>
+		<string id="MoLocalConfig5" text="寻找罪犯."/>
+		<string id="MoLocalConfig6" text="你现在在墨家佣兵行会的官方办事处,年轻人找雇主的地方.\n 更有经验的士兵似乎在里面的房间里."/>
+		<string id="MoLocalConfig7" text="到更深的房间去."/>
+		<string id="MoLocalConfig8" text="回到之前的房间."/>
+		<string id="MoLocalConfig9" text="你现在在墨家佣兵行会的官方办事处. 这里的士兵是军队的中坚力量，经验丰富，骁勇善战.\n 但你看到精锐部队在更里面的房间等待足够有钱的雇主."/>
+		<string id="MoLocalConfig10" text="你现在在墨家佣兵行会的官方办事处. 这地方到处都是最好的士兵."/>
+		<string id="MoLocalConfig11" text="你来到了行会监狱.这里关押有许多囚犯,花点钱就能买到."/>
+	</strings>
+</base>

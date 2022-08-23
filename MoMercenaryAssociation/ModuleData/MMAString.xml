@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MMAStrings>
+	<OnModuleLoaded>{=MoStrings1}Mo Mercenary Association has been loaded successfully. Author:{Author}, Translator:{Translator}  Have a good time!</OnModuleLoaded>
+	<ToTownOptionText>{=MoStrings2}Go to the Mo Mercenary Association Hall.</ToTownOptionText>
+	<LeaveTownOptionText>{=MoStrings3}Go back to the town</LeaveTownOptionText>
+	<TownText>{=MoStrings4}You came to the mercenary Association. You can find it in almost every settlements, except the bandits' hideout.</TownText>
+	<ToCastleOptionText>{=MoStrings5}Go to the Mo Mercenary Association Hall.</ToCastleOptionText>
+	<LeaveCastleOptionText>{=MoStrings6}Go back to the castle.</LeaveCastleOptionText>
+	<CastleText>{=MoStrings7}You came to the mercenary Association.</CastleText>
+	<ToVillageOptionText>{=MoStrings8}Go to the Mo Mercenary Association Hall.</ToVillageOptionText>
+	<LeaveVillageOptionText>{=MoStrings9}Go back to the village.</LeaveVillageOptionText>
+	<VillageText>{=MoStrings10}You came to the mercenary Association.</VillageText>
+	<ReturnToTownHallText>{=MoStrings11}Go back to the Mercenary Association Hall.</ReturnToTownHallText>
+	<ReturnToCastleHallText>{=MoStrings12}Go back to the Mercenary Association Hall.</ReturnToCastleHallText>
+	<ReturnToVillageHallText>{=MoStrings13}Go back to the Mercenary Association Hall.</ReturnToVillageHallText>
+	<ReturnToSettlementText>{=MoStrings14}Leave the Association.</ReturnToSettlementText>
+	<UnableToCoverTheCost_Gold>{=MoStrings15}You can not recruit {TroopName}. You have not enough gold. </UnableToCoverTheCost_Gold>
+    <UnableToCoverTheCost_Prosperity>{=MoStrings16}You can not recruit {TroopName}. {SettlementName}'s Prosperity is too low.</UnableToCoverTheCost_Prosperity>
+    <UnableToCoverTheCost_Hearth>{=MoStrings17}You can not recruit {TroopName}. It doesn't have enough people.</UnableToCoverTheCost_Hearth>
+    <UnableToCoverTheCost_Militia>{=MoStrings18}You can not recruit {TroopName}. Number of {SettlementName}'s Militia is too less.</UnableToCoverTheCost_Militia>
+    <UnableToCoverTheCost_Renown>{=MoStrings19}You can not recruit {TroopName}. You have not enough renown.</UnableToCoverTheCost_Renown>
+	<UnusableCondition_Gold>{=MoStrings20}Gold is Unusable now...</UnusableCondition_Gold>
+	<UnusableCondition_Prosperity>{=MoStrings21}You are not the owner of {SettlementName}.</UnusableCondition_Prosperity>
+	<UnusableCondition_Hearth>{=MoStrings22}{SettlementName} is not a village or you are not the owner of it.</UnusableCondition_Hearth>
+	<UnusableCondition_Militia>{=MoStrings23}Number of {SettlementName}'s Militia is too less, so that the lord of {SettlementName} will not allow they leave party.</UnusableCondition_Militia>
+	<UnusableCondition_Renown>{=MoStrings24}Renown is Unusable now...</UnusableCondition_Renown>
+	<DefaultRecruitOptionText>{=MoStrings25}Get {Amount} {TroopName} as your {RecruitType} cost {GoldValue} {Gold} {ProsperityValue} {Prosperity} {HearthValue} {Hearth} {MilitiaValue} {Militia} {RenownValue} {Renown}</DefaultRecruitOptionText>
+	<Translator>{=MoStrings26}MoLengling</Translator>
+	<Soldier>{=MoStrings27}Slodier</Soldier>
+	<Prisoner>{=MoStrings28}Prisoner</Prisoner>
+	<Companion>{=MoStrings29}Companion</Companion>
+	<Family>{=MoStrings30}Family Member</Family>
+	<Gold>{=MoStrings31}dinar</Gold>
+	<Prosperity>{=MoStrings32}prosperity</Prosperity>
+	<Hearth>{=MoStrings33}hearth</Hearth>
+	<Militia>{=MoStrings34}militia</Militia>
+	<Renown>{=MoStrings35}renown</Renown>
+	<DefaultReturnOptionText>{=MoStrings36}Return to last menu.</DefaultReturnOptionText>
+</MMAStrings>

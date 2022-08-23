@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base type = "string">
+	<tags>
+		<tag language="简体中文"/>
+	</tags>
+	<strings>
+		<string id="MoStrings1" text="Mo Mercenary Association 加载成功.\n 作者:{Author},\n 译者:{Translator} \n 祝您玩得高兴!"/>
+		<string id="MoStrings2" text="前往墨家佣兵行会大厅."/>
+		<string id="MoStrings3" text="回到城镇"/>
+		<string id="MoStrings4" text="你来到了雇佣兵协会。你几乎在每个定居点都能找到它，当然，除了土匪们的藏身处。"/>
+		<string id="MoStrings5" text="前往墨家佣兵行会大厅."/>
+		<string id="MoStrings6" text="回到城堡."/>
+		<string id="MoStrings7" text="你来到了墨家佣兵行会."/>
+		<string id="MoStrings8" text="前往墨家佣兵行会大厅."/>
+		<string id="MoStrings9" text="回到村庄."/>
+		<string id="MoStrings10" text="你来到了墨家佣兵行会."/>
+		<string id="MoStrings11" text="回到佣兵行会大厅."/>
+		<string id="MoStrings12" text="回到佣兵行会大厅."/>
+		<string id="MoStrings13" text="回到佣兵行会大厅."/>
+		<string id="MoStrings14" text="离开佣兵行会."/>
+		<string id="MoStrings15" text="你无法招募 {TroopName}. 你没有足够的钱. "/>
+		<string id="MoStrings16" text="你无法招募 {TroopName}. {SettlementName} 的繁荣度太低了."/>
+		<string id="MoStrings17" text="你无法招募 {TroopName}. 这里人太少了."/>
+		<string id="MoStrings18" text="你无法招募 {TroopName}. {SettlementName}的民兵太少了."/>
+		<string id="MoStrings19" text="你无法招募 {TroopId}. 你的声望太低了."/>
+		<string id="MoStrings20" text="现在金钱不可用于招募..."/>
+		<string id="MoStrings21" text="你不是 {SettlementName} 的所有者."/>
+		<string id="MoStrings22" text="{SettlementName}不是村庄，或你不是其所有者."/>
+		<string id="MoStrings23" text="{SettlementName}的民兵数量太少了, 所以 {SettlementName} 的领主不会允许这些民兵随你离开."/>
+		<string id="MoStrings24" text="声望现在不能用于招募..."/>
+		<string id="MoStrings25" text="获取{Amount}个{TroopName}作为你的{RecruitType}需要消耗{GoldValue}{Gold}{ProsperityValue}{Prosperity}{HearthValue}{Hearth}{MilitiaValue}{Militia}{RenownValue}{Renown}"/>
+<!-- OverWrite this name (MoStrings26) in your language's translation files and you can see the translator will changed in your target language-->
+		<string id="MoStrings26" text="墨冷凌"/>
+		<string id="MoStrings27" text="士兵"/>
+		<string id="MoStrings28" text="俘虏"/>
+		<string id="MoStrings29" text="同伴"/>
+		<string id="MoStrings30" text="家庭成员"/>
+		<string id="MoStrings31" text="第纳尔"/>
+		<string id="MoStrings32" text="繁荣度"/>
+		<string id="MoStrings33" text="户"/>
+		<string id="MoStrings34" text="民兵"/>
+		<string id="MoStrings35" text="声望"/>
+		<string id="MoStrings36" text="回到上一级菜单."/>
+	</strings>
+</base>

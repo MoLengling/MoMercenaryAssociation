@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base type = "string">
+	<tags>
+		<tag language="English"/>
+	</tags>
+	<strings>
+		<string id="MoStrings1" text="Mo Mercenary Association has been loaded successfully.\n Author:{Author},\n Translator:{Translator} \n Have a good time!"/>
+		<string id="MoStrings2" text="Go to the Mo Mercenary Association Hall."/>
+		<string id="MoStrings3" text="Go back to the town"/>
+		<string id="MoStrings4" text="You came to the mercenary Association. You can find it in almost every settlements, except the bandits' hideout."/>
+		<string id="MoStrings5" text="Go to the Mo Mercenary Association Hall."/>
+		<string id="MoStrings6" text="Go back to the castle."/>
+		<string id="MoStrings7" text="You came to the mercenary Association."/>
+		<string id="MoStrings8" text="Go to the Mo Mercenary Association Hall."/>
+		<string id="MoStrings9" text="Go back to the village."/>
+		<string id="MoStrings10" text="You came to the mercenary Association."/>
+		<string id="MoStrings11" text="Go back to the Mercenary Association Hall."/>
+		<string id="MoStrings12" text="Go back to the Mercenary Association Hall."/>
+		<string id="MoStrings13" text="Go back to the Mercenary Association Hall."/>
+		<string id="MoStrings14" text="Leave the Association."/>
+		<string id="MoStrings15" text="You can not recruit {TroopId}. You have not enough gold. "/>
+		<string id="MoStrings16" text="You can not recruit {TroopId}. {SettlementName}'s Prosperity is too low."/>
+		<string id="MoStrings17" text="You can not recruit {TroopId}. It doesn't have enough people."/>
+		<string id="MoStrings18" text="You can not recruit {TroopId}. Number of {SettlementName}'s Militia is too less."/>
+		<string id="MoStrings19" text="You can not recruit {TroopId}. You have not enough renown."/>
+		<string id="MoStrings20" text="Gold is Unusable now..."/>
+		<string id="MoStrings21" text="You are not the owner of {SettlementName}."/>
+		<string id="MoStrings22" text="{SettlementName} is not a village or you are not the owner of it."/>
+		<string id="MoStrings23" text="Number of {SettlementName}'s Militia is too less, so that the lord of {SettlementName} will not allow they leave party."/>
+		<string id="MoStrings24" text="Renown is Unusable now..."/>
+		<string id="MoStrings25" text="Get {Amount} {TroopName} as your {RecruitType} cost {GoldValue} {Gold} {ProsperityValue} {Prosperity} {HearthValue} {Hearth} {MilitiaValue} {Militia} {RenownValue} {Renown}"/>
+		<!-- OverWrite this name (MoStrings26) in your language's translation files and you can see the translator will changed in your target language-->
+		<string id="MoStrings26" text="MoLengling"/>
+		<string id="MoStrings27" text="Slodier"/>
+		<string id="MoStrings28" text="Prisoner"/>
+		<string id="MoStrings29" text="Companion"/>
+		<string id="MoStrings30" text="Family Member"/>
+		<string id="MoStrings31" text="dinar"/>
+		<string id="MoStrings32" text="prosperity"/>
+		<string id="MoStrings33" text="hearth"/>
+		<string id="MoStrings34" text="militia"/>
+		<string id="MoStrings35" text="renown"/>
+		<string id="MoStrings36" text="Return to last menu."/>
+	</strings>
+</base>
