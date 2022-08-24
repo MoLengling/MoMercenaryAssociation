@@ -62,6 +62,7 @@ namespace MoMercenaryAssociation
                         MoGameMenuHelper.Get().CreateGameMenuOption(CreateMenuId, subMenu.Value.ToSubmenu,
                             delegate (MenuCallbackArgs args)
                             {
+                                args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
                                 args.IsEnabled = subMenu.Value.Enable.IsEnable(Settlement.CurrentSettlement);
                                 return true;
                             }
@@ -88,6 +89,7 @@ namespace MoMercenaryAssociation
                         MoGameMenuHelper.Get().CreateGameMenuOption(MenuId, subMenu.Value.ToSubmenu,
                             delegate (MenuCallbackArgs args)
                             {
+                                args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
                                 args.IsEnabled = subMenu.Value.Enable.IsEnable(Settlement.CurrentSettlement);
                                 return true;
                             }
@@ -130,6 +132,7 @@ namespace MoMercenaryAssociation
                         MoGameMenuHelper.Get().CreateGameMenuOption(CreateMenuId, subMenu.Value.ToSubmenu,
                             delegate (MenuCallbackArgs args)
                             {
+                                args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
                                 args.IsEnabled = subMenu.Value.Enable.IsEnable(Settlement.CurrentSettlement);
                                 return true;
                             }
@@ -156,6 +159,7 @@ namespace MoMercenaryAssociation
                         MoGameMenuHelper.Get().CreateGameMenuOption(MenuId, subMenu.Value.ToSubmenu,
                             delegate (MenuCallbackArgs args)
                             {
+                                args.optionLeaveType = GameMenuOption.LeaveType.Submenu;
                                 args.IsEnabled = subMenu.Value.Enable.IsEnable(Settlement.CurrentSettlement);
                                 return true;
                             }
