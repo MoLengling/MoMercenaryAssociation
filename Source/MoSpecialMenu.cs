@@ -11,7 +11,7 @@ namespace MoMercenaryAssociation
     {
         protected Dictionary<string,SubmenuOption> Parents;
         public MoGameMenu RealMenu { get; private set; }
-        public void AddParents(string parent, SubmenuOption optioninfo) => Parents.Add(parent, optioninfo);
+        public void AddParent(string parent, SubmenuOption optioninfo) => Parents.Add(parent, optioninfo);
 
         public string[] GetParents()
         {
@@ -26,12 +26,33 @@ namespace MoMercenaryAssociation
         public MoSpecialMenu(MoGameMenu menu)
         {
             RealMenu = menu;
+            StringId = menu.MenuId;
         }
-
+        public void AddParentMenu(string submuneId, string conditions, string ToSubmenuText, string LeaveSubMenuText)
+        {
+            if (Parents.ContainsKey(submuneId))
+                return;
+            SubmenuOption optionText = new SubmenuOption(true, ToSubmenuText, LeaveSubMenuText, conditions);
+            AddParent(submuneId, optionText);
+        }
+        public void AddParentMenu(string submuneId, string conditions, string ToSubmenuText)
+        {
+            if (Parents.ContainsKey(submuneId))
+                return;
+            SubmenuOption optionText = new SubmenuOption(false, ToSubmenuText, "", conditions);
+            AddParent(submuneId, optionText);
+        }
         public void CreateSpecialMenu()
         {
+            
             foreach(KeyValuePair<string,SubmenuOption> parent in Parents)
             {
+                if(MoGameMenuManager.Get().Contains(parent.Key))
+                {
+                    //再观察一次父Menu是不是后加载的，目前列表有没有父菜单。如果有则通过GameMenuManager创建。
+                    MoGameMenuManager.Get()[parent.Key].AddSubMenu(StringId, parent.Value);
+                    continue;
+                }
                 if (parent.Value.LeaveToThis)
                 {
                     string RuntimeId = RealMenu.CreateSubmenusRecursively(parent.Key,parent.Value.LeaveSubmenu);
