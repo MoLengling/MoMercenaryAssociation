@@ -27,11 +27,15 @@ namespace MoMercenaryAssociation
         }
         public void AddSubMenu(string submuneId,string conditions, string ToSubmenuText, string LeaveSubMenuText)
         {
+            if (SubMenus.ContainsKey(submuneId))
+                return;
             SubmenuOption optionText = new SubmenuOption(true, ToSubmenuText, LeaveSubMenuText, conditions);
             SubMenus.Add(submuneId, optionText);
         }
         public void AddSubMenu(string submuneId, string conditions, string ToSubmenuText)
         {
+            if (SubMenus.ContainsKey(submuneId))
+                return;
             SubmenuOption optionText = new SubmenuOption(false, ToSubmenuText, "", conditions);
             SubMenus.Add(submuneId, optionText);
         }

@@ -58,5 +58,10 @@ namespace MoMercenaryAssociation
             NewObject.Init(Param);
             return NewObject;
         }
+
+        public static bool IsSingletionVaild()
+        {
+            return SingletionObject != null;
+        }
     }
 }
