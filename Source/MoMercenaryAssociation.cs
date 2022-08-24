@@ -67,6 +67,8 @@ namespace MoMercenaryAssociation
         public override void OnInitialState()
         {
             base.OnInitialState();
+            if (MoXmlReader.IsSingletionVaild())
+                return;
             //读取设置文件，获取全部的字符串
             MoXmlReader.Get(new XmlReaderParam(MoSettings.MMASettingPath, "MMASettings",(XmlReaderParam.AfterCreateReader) AfterReadSettings));
             MoXmlReader.Get().StartReadXml();
@@ -75,6 +77,8 @@ namespace MoMercenaryAssociation
         {
             base.OnGameInitializationFinished(game);
             //通过官方API拿到全部的Mod，并在其中寻找MMAConfig文件
+            if (MoCustomOfficeManager.IsSingletionVaild())
+                return;
             string[] ModuleNames = Campaign.Current.SandBoxManager.ModuleManager.ModuleNames;
             List<string> CustomMMAConfigPath = new List<string>();
             MoLogs.Get().DebugAndLog("MMA Start Reading ConfigFile");
