@@ -36,6 +36,7 @@ namespace MoMercenaryAssociation
 
         public void Reset()
         {
+            _GameStarter = null;
             MenuIndex = 0;
             OptionIndex = 0;
         }
