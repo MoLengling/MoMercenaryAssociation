@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
@@ -73,6 +73,7 @@
     <Reference Include="TaleWorlds.ObjectSystem">
       <HintPath>E:\steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
     </Reference>
+    <PackageReference Include="Bannerlord.MCM" Version="4.3.16" IncludeAssets="compile" />
   </ItemGroup>
 
   <ItemGroup>
