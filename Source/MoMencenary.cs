@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Actions;
+using System.Reflection;
 
 namespace MoMercenaryAssociation
 {
@@ -152,9 +153,10 @@ namespace MoMercenaryAssociation
                     {
                         for (int i = 0; i < Amount; i++)
                         {
-                            CharacterObject TempCharacter = CharacterObject.CreateFrom(character);
-                            Hero newHero = HeroCreator.CreateHeroAtOccupation(Occupation.Wanderer);
-                            newHero.SetCharacterObject(TempCharacter);
+                            Type CharacterType = typeof(Hero);
+                            Hero newHero = HeroCreator.CreateSpecialHero(character);
+                            CharacterType.GetProperty("Occupation"/*, BindingFlags.NonPublic | BindingFlags.Instance*/).SetValue(newHero, Occupation.Wanderer);
+                            
                             AddCompanionAction.Apply(Clan.PlayerClan, newHero);
                             AddHeroToPartyAction.Apply(newHero, MobileParty.MainParty);
                         }
@@ -164,8 +166,9 @@ namespace MoMercenaryAssociation
                     {
                         for (int i = 0; i < Amount; i++)
                         {
-                            Hero newHero = HeroCreator.CreateSpecialHero(character);
-                            newHero.Clan = Clan.PlayerClan;
+                            Type CharacterType = typeof(Hero);
+                            Hero newHero = HeroCreator.CreateSpecialHero(character,Settlement.CurrentSettlement,Clan.PlayerClan);
+                            CharacterType.GetProperty("Occupation").SetValue(newHero, Occupation.Lord);
                             AddHeroToPartyAction.Apply(newHero, MobileParty.MainParty);
                         }
                         break;
