@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Localization;
 using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Actions;
+using System.Reflection;
 
 namespace MoMercenaryAssociation
 {
@@ -152,9 +153,10 @@ namespace MoMercenaryAssociation
                     {
                         for (int i = 0; i < Amount; i++)
                         {
-                            CharacterObject TempCharacter = CharacterObject.CreateFrom(character);
-                            MoReflection.SetFieldValue("_occupation", Occupation.Wanderer, TempCharacter);
-                            Hero newHero = HeroCreator.CreateSpecialHero(TempCharacter);
+                            Type CharacterType = typeof(Hero);
+                            Hero newHero = HeroCreator.CreateSpecialHero(character);
+                            CharacterType.GetProperty("Occupation"/*, BindingFlags.NonPublic | BindingFlags.Instance*/).SetValue(newHero, Occupation.Wanderer);
+                            
                             AddCompanionAction.Apply(Clan.PlayerClan, newHero);
                             AddHeroToPartyAction.Apply(newHero, MobileParty.MainParty);
                         }
@@ -164,9 +166,9 @@ namespace MoMercenaryAssociation
                     {
                         for (int i = 0; i < Amount; i++)
                         {
-                            CharacterObject TempCharacter = CharacterObject.CreateFrom(character);
-                            MoReflection.SetFieldValue("_occupation", Occupation.Lord, TempCharacter);
+                            Type CharacterType = typeof(Hero);
                             Hero newHero = HeroCreator.CreateSpecialHero(character,Settlement.CurrentSettlement,Clan.PlayerClan);
+                            CharacterType.GetProperty("Occupation").SetValue(newHero, Occupation.Lord);
                             AddHeroToPartyAction.Apply(newHero, MobileParty.MainParty);
                         }
                         break;
