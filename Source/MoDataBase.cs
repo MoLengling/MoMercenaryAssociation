@@ -7,7 +7,7 @@ namespace MoMercenaryAssociation
     public class MoDataBase
     {
         protected string stringId;
-        public string StringId { get => stringId; private set => stringId = value; }
+        public string StringId { get => stringId; protected set => stringId = value; }
         public MoDataBase()
         {
 

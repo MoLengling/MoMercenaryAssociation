@@ -3,13 +3,15 @@
 <!-- author:Mo Lengling-->
 
 <!-- Be sure to note the case of the initial letter of the Attribute name.务必注意大小写问题，大小写一旦错误，程序轻则忽略属性设置，重则崩溃-->
-<!-- You can find English Description at the End of file-->
 
+<!-- MMA_Town\MMA_Castle\MMA_Village is the Root Menus of MMA, the Hall of Mercenary Association, Your Cumtom GameMenu should mount under these nodes-->
+<!-- MMA_Town\MMA_Castle\MMA_Village 这三个菜单是Mod的根菜单,一般的自定义菜单应该像下面这样，通过Parentmenus挂在这三个根节点下面。但……你要是知道其他的菜单的ID，也可以往里面挂。-->
 <Submenus>
 	<Submenu 
 		Id="Mo_Official_Offices" 
 		Text ="{=MoLocalConfig1}You are now in the official office of the Mercenary Association, what are you going to do?">
 		<Parentmenus>
+			<!-- 定义这个菜单的父菜单， MMA会寻找父菜单，并让父菜单记录这个子菜单。所以如果不是作为扩展接入（也就是父菜单不在这个mod里）的话，请让父菜单用Submenus定义当前菜单为子菜单，而不是从这个菜单去定义父菜单。-->
 			<Parentmenu
 				Id="MMA_Town"
 				OptionText ="{=MoLocalConfig2}Go to the official office of the Mercenary Association.."
@@ -17,6 +19,8 @@
 				Return ="true"
 				EnableConditiosn="true"	
 				/>
+			<!-- OptionText 是父菜单来这个子菜单的选项的文本内容。ReturnText是子菜单回父菜单选项的文本内容。Return=true时，子菜单可以回到父菜单。EnableCondition定义
+			这个父菜单通往子菜单的选项是否被禁用。EnableCondition的内容应该是一串逻辑表达式。使用true、false、and、or、not-->
 			<Parentmenu
 				Id="MMA_Castle"
 				OptionText ="{=MoLocalConfig2}Go to the official office of the Mercenary Association.."

@@ -9,6 +9,14 @@ namespace MoMercenaryAssociation
         where ManagementName:MoDataBase,new()
     {       
         protected Dictionary<string, ManagementName> Managements;
+
+        public ManagementName this[string StringId]
+        {
+            get
+            {
+                return Managements.ContainsKey(StringId) ? Managements[StringId] : null;
+            }
+        }
         public MoManagerBase():base() 
         {
             Managements = new Dictionary<string, ManagementName>();
@@ -16,13 +24,23 @@ namespace MoMercenaryAssociation
 
         virtual public bool TryFindManagement(string id,out ManagementName Management)
         {
-            if (Managements.ContainsKey(id))
+            if (Contains(id))
             {
                 Management = Managements[id];
                 return true;
             }
             Management = default(ManagementName);
             return false;
+        }
+
+        virtual public bool Contains(string Id)
+        {
+            return Managements.ContainsKey(Id);
+        }
+
+        virtual public bool Contains(ManagementName management)
+        {
+            return Managements.ContainsKey(management.StringId) || Managements.ContainsValue(management);
         }
 
         virtual public ManagementName[] GetManagements()

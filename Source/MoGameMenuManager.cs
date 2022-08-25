@@ -65,188 +65,11 @@ namespace MoMercenaryAssociation
                 MoXmlReader.Get().StartReadXml();
             }
         }
+
         public void ReadMMAConfigXml(XmlNode rootNode, string FilePath)
         {
-            foreach (XmlNode Child in rootNode.ChildNodes)
-            {
-                MoGameMenu NewMenu;
-                //读取属性值
-                string MenuId = ""/*, InTown = "", InCastle = "", InVillage = ""*/, Text = ""/*, OptionText = ""*/, OverwirteMode = "";
-                foreach (XmlAttribute xmlAttribute in Child.Attributes)
-                {
-                    switch (xmlAttribute.Name)
-                    {
-                        case "Id":
-                            MenuId = xmlAttribute.Value;
-                            MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,id: " + MenuId);
-                            break;
-                        case "OverwirteMode":
-                            OverwirteMode = xmlAttribute.Value;
-                            MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,OverwirteMode: " + OverwirteMode);
-                            break;
-                        //case "InTown":
-                        //    InTown = xmlAttribute.Value;
-                        //    MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,InTown:" + MenuId);
-                        //    break;
-                        //case "InCastle":
-                        //    InCastle = xmlAttribute.Value; break;
-                        //case "InVillage":
-                        //    InVillage = xmlAttribute.Value; break;
-                        case "Text":
-                            Text = xmlAttribute.Value;
-                            MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,Text: " + Text);
-                            break;
-                            //case "OptionText":
-                            //    OptionText = xmlAttribute.Value;
-                            //    MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,OptionText: " + OptionText);
-                            //    break;
-                    }
-
-                }
-                if (MenuId == "" || MenuId == null)
-                {
-                    //如果没有菜单ID，记录异常，不加载此菜单
-                    MoExceptionManager.Get().RecordException(new MoExceptionBase("GameMenu without Menuid"));
-                    continue;
-                }
-                if (GameMenus.ContainsKey(MenuId))
-                {
-                    MoLogs.Get().Log("MoGameMenu", "Exist GameMenu,Id: " + MenuId);
-                    if (OverwirteMode.ToLower() == "remove")
-                    {
-                        //使用remove标记
-                        GameMenus[MenuId].isRemoved = true;
-                        continue;
-
-                    }
-                    else if (OverwirteMode.ToLower() == "overwrite")
-                    {
-                        GameMenus.Remove(MenuId);
-                    }
-                    else
-                    {
-                        MoExceptionManager.Get().RecordException(new MoExceptionBase("Same id:" + MenuId + ", No OverWriteMode!"));
-                        MoLogs.Get().Log("MoGameMenu", "Perform avoidance actions, This is likely to cause problems in runtime");
-                        int i = 0;
-                        string tempId = MenuId;
-                        while (GameMenus.ContainsKey(tempId))
-                        {
-                            tempId = MenuId;
-                            tempId += "_Avoid" + i;
-                        }
-                        MenuId = tempId;
-                        MoLogs.Get().Log("MoGameMenu", "avoidance actions succeed, new GameMenuId:" + MenuId);
-                    }
-                }
-
-                if (Child.Name == "Submenu" || Child.Name =="Menu")
-                {
-                    MoLogs.Get().Log("MoGameMenu", "GameMenu Id=" + MenuId + " Text:" + Text);
-                    NewMenu = new MoGameMenu(MenuId, Text);
-                }
-                else if (Child.Name == "Office")
-                {
-                    MoLogs.Get().Log("MoGameMenu", "CuntomOffice Id=" + MenuId + " Text:" + Text);
-                    MoCustomOffice NewOffice = new MoCustomOffice(MenuId, Text);
-                    MoCustomOfficeManager.Get().ReadMMAConfigXml(NewOffice, Child, FilePath);
-                    NewMenu = NewOffice;
-                }
-                else
-                {
-                    MoExceptionManager.Get().RecordException(new MoExceptionBase("Check if the Submenu Node in "));
-                    continue;
-                }
-
-
-                //将这些菜单添加到菜单管理器中去
-                AddNewGameMenu(NewMenu);
-                XmlNode Parents = Child.SelectSingleNode("Parentmenus");
-                if (Parents != null)
-                {
-                    MoLogs.Get().Log("GameMenu Id= " + MenuId + " defined its parent menu, Reading parent menu start");
-                    foreach (XmlNode ParentMenu in Parents.ChildNodes)
-                    {
-                        string To = "", Re = "", CanRe = "", Id = "", EnableConditions = "";
-                        foreach (XmlAttribute xmlAttribute in ParentMenu.Attributes)
-                        {
-                            switch (xmlAttribute.Name)
-                            {
-                                case "OptionText":
-                                    To = xmlAttribute.Value; break;
-                                case "ReturnText":
-                                    Re = xmlAttribute.Value; break;
-                                case "Return":
-                                    CanRe = xmlAttribute.Value; break;
-                                case "Id":
-                                    Id = xmlAttribute.Value; break;
-                                case "EnableConditiosn":
-                                    EnableConditions = xmlAttribute.Value; break;
-                            }
-                        }
-                        if (Id == "")
-                        {
-                            MoExceptionManager.Get().RecordException(new MoExceptionBase("Can not find SubmenuId, skip over it!"));
-                            continue;
-                        }
-                        if (GameMenus.ContainsKey(Id))
-                        {
-                            if (CanRe.Trim().ToLower() == "false")
-                                GameMenus[Id].AddSubMenu(MenuId, EnableConditions, To);
-                            else
-                                GameMenus[Id].AddSubMenu(MenuId, EnableConditions, To, Re);
-                        }
-                        else
-                        {
-                            MoLogs.Get().Log("MoGameMenu", "There is a Special ParentId:" + Id + " MoGamemenuMangager Can not find it.");
-                            MoLogs.Get().Log("MoGameMenu", "Maybe it is a exist gamenenu but create by other mods, or is a officaial Menu.");
-                            MoLogs.Get().Log("MoGameMenu", "MMA will try to add current menu to its defined parentmenu.");
-                            MoSpecialMenuManager.Get().AddSpecialMenu(new MoSpecialMenu(NewMenu));
-                        }
-                        MoLogs.Get().Log("Parentmenu: " + Id);
-                    }
-                }
-
-                XmlNode SubMenus = Child.SelectSingleNode("Submenus");
-                if (SubMenus != null)
-                {
-                    MoLogs.Get().Log("GameMenu Id= " + MenuId + " has Submenu, Reading Submenu start");
-                    //如果有子菜单，则读取它的子菜单（的id）
-                    foreach (XmlNode SubMenu in SubMenus.ChildNodes)
-                    {
-                        string To = "", Re = "", CanRe = "", Id = "", EnableConditions = "";
-                        foreach (XmlAttribute xmlAttribute in SubMenu.Attributes)
-                        {
-                            switch (xmlAttribute.Name)
-                            {
-                                case "OptionText":
-                                    To = xmlAttribute.Value; break;
-                                case "ReturnText":
-                                    Re = xmlAttribute.Value; break;
-                                case "Return":
-                                    CanRe = xmlAttribute.Value; break;
-                                case "Id":
-                                    Id = xmlAttribute.Value; break;
-                                case "EnableConditiosn":
-                                    EnableConditions = xmlAttribute.Value; break;
-                            }
-                        }
-                        if (Id == "")
-                        {
-                            MoExceptionManager.Get().RecordException(new MoExceptionBase("Can not find SubmenuId, skip over it!"));
-                            continue;
-                        }
-                        if (CanRe.Trim().ToLower() == "false")
-                            GameMenus[MenuId].AddSubMenu(Id, EnableConditions, To);
-                        else
-                            GameMenus[MenuId].AddSubMenu(Id, EnableConditions, To, Re);
-                        MoLogs.Get().Log("Submenu: " + Id);
-                    }
-                }
-
-
-            }
+            MoGameMenuManagerHelper.StartReadDate(rootNode, FilePath);
         }
-
 
         public void StartCreateMenu()
         {
@@ -281,6 +104,209 @@ namespace MoMercenaryAssociation
             }
             CreateMenuId = "";
             return false;
+        }
+    }
+
+    internal static class MoGameMenuManagerHelper
+    {
+        public static void StartReadDate(XmlNode rootNode, string FilePath)
+        {
+            foreach (XmlNode Child in rootNode.ChildNodes)
+            {
+                MoGameMenu NewMenu;
+                if (LoadGameMenuBaseData(Child, FilePath, out NewMenu))
+                {
+
+                    //将这些菜单添加到菜单管理器中去
+                    MoGameMenuManager.Get().AddNewGameMenu(NewMenu);
+                    XmlNode Parents = Child.SelectSingleNode("Parentmenus");
+                    if (Parents != null)
+                    {
+                        LoadParentMenus(NewMenu, Parents);
+                    }
+
+                    XmlNode SubMenus = Child.SelectSingleNode("Submenus");
+                    if (SubMenus != null)
+                    {
+                        LoadSubMenus(NewMenu, SubMenus);
+                    }
+
+                }
+            }
+        }
+        private static void LoadParentMenus(MoGameMenu NewMenu, XmlNode ParentNodes)
+        {
+            MoLogs.Get().Log("GameMenu Id= " + NewMenu.MenuId + " defined its parent menu, Reading parent menu start");
+            foreach (XmlNode ParentMenu in ParentNodes.ChildNodes)
+            {
+                string To, Re, CanRe, Id, EnableConditions;
+                if (ReadOptionData(ParentMenu, out To, out Re, out CanRe, out Id, out EnableConditions))
+                {
+                    if (MoGameMenuManager.Get().Contains(Id))
+                    {
+                        if (CanRe.Trim().ToLower() == "false")
+                            MoGameMenuManager.Get()[Id].AddSubMenu(NewMenu.MenuId, EnableConditions, To);
+                        else
+                            MoGameMenuManager.Get()[Id].AddSubMenu(NewMenu.MenuId, EnableConditions, To, Re);
+                    }
+                    else
+                    {
+                        MoLogs.Get().Log("MoGameMenu", "There is a Special ParentId:" + Id + " MoGamemenuMangager Can not find it.");
+                        MoLogs.Get().Log("MoGameMenu", "Maybe it is a exist gamenenu but create by other mods, or is a officaial Menu.");
+                        MoLogs.Get().Log("MoGameMenu", "MMA will try to add current menu to its defined parentmenu.");
+                        MoSpecialMenu SpecialMenu;
+                        if (!MoSpecialMenuManager.Get().TryFindManagement(NewMenu.MenuId, out SpecialMenu))
+                        {
+                            SpecialMenu = new MoSpecialMenu(NewMenu);
+                            MoSpecialMenuManager.Get().AddSpecialMenu(SpecialMenu);
+                        }
+
+                        if (SpecialMenu.RealMenu != NewMenu)
+                        {
+                            MoExceptionManager.Get().RecordException(new MoExceptionBase("SpecialMenu.RealMenu != NewMenu!"));
+                            continue;
+                        }
+                        if (CanRe.Trim().ToLower() == "false")
+                            SpecialMenu.AddParentMenu(NewMenu.MenuId, EnableConditions, To);
+                        else
+                            SpecialMenu.AddParentMenu(NewMenu.MenuId, EnableConditions, To, Re);
+                    }
+                    MoLogs.Get().Log("Parentmenu: " + Id);
+                }
+            }
+        }
+        private static void LoadSubMenus(MoGameMenu NewMenu, XmlNode SubMenus)
+        {
+            MoLogs.Get().Log("GameMenu Id= " + NewMenu.MenuId + " has Submenu, Reading Submenu start");
+            //如果有子菜单，则读取它的子菜单（的id）
+            //不检查子菜单是否存在
+            foreach (XmlNode SubMenu in SubMenus.ChildNodes)
+            {
+                string To , Re , CanRe , Id , EnableConditions ;
+                if (ReadOptionData(SubMenu, out To, out Re, out CanRe, out Id, out EnableConditions))
+                {
+                    if (CanRe.Trim().ToLower() == "false")
+                        MoGameMenuManager.Get()[NewMenu.MenuId].AddSubMenu(Id, EnableConditions, To);
+                    else
+                        MoGameMenuManager.Get()[NewMenu.MenuId].AddSubMenu(Id, EnableConditions, To, Re);
+                    MoLogs.Get().Log("Submenu: " + Id);
+                }
+            }
+        }
+
+        private static bool ReadOptionData(XmlNode MenuNode, out string To, out string Re, out string CanRe, out string Id, out string EnableConditions)
+        {
+            To = "";
+            Re = "";
+            CanRe = "";
+            Id = "";
+            EnableConditions = "";
+
+            foreach (XmlAttribute xmlAttribute in MenuNode.Attributes)
+            {
+                switch (xmlAttribute.Name)
+                {
+                    case "OptionText":
+                        To = xmlAttribute.Value; break;
+                    case "ReturnText":
+                        Re = xmlAttribute.Value; break;
+                    case "Return":
+                        CanRe = xmlAttribute.Value; break;
+                    case "Id":
+                        Id = xmlAttribute.Value; break;
+                    case "EnableConditiosn":
+                        EnableConditions = xmlAttribute.Value; break;
+                }
+            }
+            if (Id == "")
+            {
+                MoExceptionManager.Get().RecordException(new MoExceptionBase("Can not find SubmenuId, skip over it!"));
+                return false;
+            }
+            return true;
+        }
+
+        private static bool LoadGameMenuBaseData(XmlNode Child, string FilePath, out MoGameMenu NewMenu)
+        {
+            //读取属性值
+            string MenuId = ""/*, InTown = "", InCastle = "", InVillage = ""*/, Text = ""/*, OptionText = ""*/, OverwirteMode = "";
+            foreach (XmlAttribute xmlAttribute in Child.Attributes)
+            {
+                switch (xmlAttribute.Name)
+                {
+                    case "Id":
+                        MenuId = xmlAttribute.Value;
+                        MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,id: " + MenuId);
+                        break;
+                    case "OverwirteMode":
+                        OverwirteMode = xmlAttribute.Value;
+                        MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,OverwirteMode: " + OverwirteMode);
+                        break;
+                    case "Text":
+                        Text = xmlAttribute.Value;
+                        MoLogs.Get().Log("MoGameMenu", "Reading Gamemune,Text: " + Text);
+                        break;
+                }
+
+            }
+            if (MenuId == "" || MenuId == null)
+            {
+                //如果没有菜单ID，记录异常，不加载此菜单
+                MoExceptionManager.Get().RecordException(new MoExceptionBase("GameMenu without Menuid"));
+                NewMenu = null;
+                return false;
+            }
+            if (MoGameMenuManager.Get().Contains(MenuId))
+            {
+                MoLogs.Get().Log("MoGameMenu", "Exist GameMenu,Id: " + MenuId);
+                if (OverwirteMode.ToLower() == "remove")
+                {
+                    //使用remove标记
+                    MoGameMenuManager.Get()[MenuId].isRemoved = true;
+                    NewMenu = null;
+                    return false;
+
+                }
+                else if (OverwirteMode.ToLower() == "overwrite")
+                {
+                    MoGameMenuManager.Get().GameMenus.Remove(MenuId);
+                }
+                else
+                {
+                    MoExceptionManager.Get().RecordException(new MoExceptionBase("Same id:" + MenuId + ", No OverWriteMode!"));
+                    MoLogs.Get().Log("MoGameMenu", "Perform avoidance actions, This is likely to cause problems in runtime");
+                    int i = 0;
+                    string tempId = MenuId;
+                    while (MoGameMenuManager.Get().Contains(tempId))
+                    {
+                        tempId = MenuId;
+                        tempId += "_Avoid" + i;
+                    }
+                    MenuId = tempId;
+                    MoLogs.Get().Log("MoGameMenu", "avoidance actions succeed, new GameMenuId:" + MenuId);
+                }
+            }
+
+            if (Child.Name == "Submenu" || Child.Name == "Menu")
+            {
+                MoLogs.Get().Log("MoGameMenu", "GameMenu Id=" + MenuId + " Text:" + Text);
+                NewMenu = new MoGameMenu(MenuId, Text);
+            }
+            else if (Child.Name == "Office")
+            {
+                MoLogs.Get().Log("MoGameMenu", "CuntomOffice Id=" + MenuId + " Text:" + Text);
+                MoCustomOffice NewOffice = new MoCustomOffice(MenuId, Text);
+                MoCustomOfficeManager.Get().ReadMMAConfigXml(NewOffice, Child, FilePath);
+                NewMenu = NewOffice;
+            }
+            else
+            {
+                MoExceptionManager.Get().RecordException(new MoExceptionBase("Check if the Submenu Node in "+ FilePath +" Id: " + MenuId) );
+                NewMenu = null;
+                return false;
+            }
+
+            return true;
         }
     }
 }
