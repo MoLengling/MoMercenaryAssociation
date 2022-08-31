@@ -32,6 +32,7 @@
     <Compile Remove="Old\MoStrings.cs" />
     <Compile Remove="Old\MoTexts.cs" />
     <Compile Remove="Old\xmlTools.cs" />
+    <Compile Remove="Source\Store\MoStore.cs" />
     <Compile Remove="Source\Test.cs" />
     <Compile Remove="xmlTools.cs" />
   </ItemGroup>
@@ -51,6 +52,7 @@
     <None Include="Old\MoStrings.cs" />
     <None Include="Old\MoTexts.cs" />
     <None Include="Old\xmlTools.cs" />
+    <None Include="Source\Store\MoStore.cs" />
     <None Include="Source\Test.cs" />
   </ItemGroup>
 
