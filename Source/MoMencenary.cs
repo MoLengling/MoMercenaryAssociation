@@ -78,9 +78,13 @@ namespace MoMercenaryAssociation
                     OptionText = MoTexts.ToString(OptionText, OptionString);
                 
                 MoGameMenuHelper.Get().CreateGameMenuOption(MenuId, OptionText,
-                    info.OnOptionInitDelegate
+                    delegate (MenuCallbackArgs args)
+                    {
+                        info.OnOptionInitDelegate(args, _Character);
+                        return true;
+                    }
                     ,
-                    delegate { info.OnOptionClickDelegate(this._Character); }
+                    delegate { info.OnOptionClickDelegate(_Character); }
                 );
 
             }
@@ -95,7 +99,7 @@ namespace MoMercenaryAssociation
         public Dictionary<RecruitCostType, float> ListOfCost;//整个List加起来是招募Amount数量的士兵的花费
         public string OptionText;
 
-        public bool OnOptionInitDelegate(MenuCallbackArgs args)
+        public bool OnOptionInitDelegate(MenuCallbackArgs args, CharacterObject character)
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Recruit;
             if (MoSettings.Get().CheatMode)
@@ -109,13 +113,21 @@ namespace MoMercenaryAssociation
                 if (!CostUsable(Cost.Key, Settlement.CurrentSettlement, out message))
                 {
                     enable = false;
-                    args.Text = new TextObject(message);
+                    string[][] OptionString = new string[][]{
+                        new string[]{ "TroopName", character.Name.ToString()},
+                        new string[]{ "SettlementName" ,Settlement.CurrentSettlement.Name.ToString()}
+                    };
+                    args.Tooltip = new TextObject(MoTexts.ToString(message, OptionString));
                     break;
                 }
                 if (!CostEnough(Cost.Key, Cost.Value, Settlement.CurrentSettlement, out message))
                 {
                     enable = false;
-                    args.Tooltip = new TextObject(message);
+                    string[][] OptionString = new string[][]{
+                        new string[]{ "TroopName", character.Name.ToString()},
+                        new string[]{ "SettlementName" ,Settlement.CurrentSettlement.Name.ToString()}
+                    };
+                    args.Tooltip = new TextObject(MoTexts.ToString(message, OptionString));
                     break;
                 }
             }
