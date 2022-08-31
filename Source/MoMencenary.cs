@@ -99,7 +99,7 @@ namespace MoMercenaryAssociation
         {
             args.optionLeaveType = GameMenuOption.LeaveType.Recruit;
             if (MoSettings.Get().CheatMode)
-            { 
+            {
                 return true; 
             }
             bool enable = true;
@@ -232,13 +232,15 @@ namespace MoMercenaryAssociation
                 case RecruitCostType.Gold:
                     Messgae = Hero.MainHero.Gold > value ? "" : MoStrings.UnableToCoverTheCost_Gold; break;
                 case RecruitCostType.Prosperity:
-                    Messgae = settlement.Prosperity > value ? "" : MoStrings.UnableToCoverTheCost_Gold; break;
+                    Messgae = settlement.Prosperity > value ? "" : MoStrings.UnableToCoverTheCost_Prosperity; break;
                 case RecruitCostType.Hearth:
-                    Messgae = settlement.Village.Hearth > value ? "" : MoStrings.UnableToCoverTheCost_Gold; break;
+                    Messgae = settlement.Village.Hearth > value ? "" : MoStrings.UnusableCondition_Hearth; break;
                 case RecruitCostType.Militia:
-                    Messgae = settlement.Militia - value >= MoSettings.Get().AIMinMilitiaNumber ? "" : MoStrings.UnableToCoverTheCost_Gold; break;
+                    float targetMinMilitiaNumber = (settlement.OwnerClan == Clan.PlayerClan || settlement.MapFaction.Leader.Clan == Clan.PlayerClan )? 0 : MoSettings.Get().AIMinMilitiaNumber;
+                    Messgae = settlement.Militia - value >= targetMinMilitiaNumber ? "" : MoStrings.UnableToCoverTheCost_Militia;
+                    break;
                 case RecruitCostType.Renown:
-                    Messgae = Clan.PlayerClan.Renown > value ? "" : MoStrings.UnableToCoverTheCost_Gold; break;
+                    Messgae = Clan.PlayerClan.Renown > value ? "" : MoStrings.UnableToCoverTheCost_Renown; break;
                 default:
                     Messgae = "SSSSS";
                     break;
