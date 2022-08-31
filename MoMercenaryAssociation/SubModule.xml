@@ -2,7 +2,7 @@
 <Module>
 	<Name value = "Mo Mercenary Association"/>
 	<Id value = "MoMercenaryAssociation"/>
-	<Version value = "e1.8.0.1000"/>
+	<Version value = "e1.8.0.1001"/>
 	<DefaultModule value="true"/>
 	<SingleplayerModule value="true"/>
   	<Official value="false" />
